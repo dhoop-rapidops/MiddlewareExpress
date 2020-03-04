@@ -1,8 +1,8 @@
 const home = (req, res) => {
 
-    const { userId } = req.session;
-    
-    let content = `<h1>Welcome!</h1>
+        const { userId } = req.session;
+
+        let content = `<h1>Welcome!</h1>
     ${userId ? `<div>Hello User</div>
     <form method="POST" action="/logout">
         <input type="submit" value="logout" />
@@ -15,7 +15,7 @@ const home = (req, res) => {
 const logout = (req, res) => {
     req.session.destroy(err => {
         if(err){
-            res.redirect("/");
+            return res.redirect("/");
         }
         res.clearCookie(process.env.SESSION_ID);
         res.redirect('/login');
